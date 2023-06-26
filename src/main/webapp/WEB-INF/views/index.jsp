@@ -6,6 +6,9 @@
 </head>
 <body>
 <h1>Hello world! from MVC</h1>
+<div>
+    <img src="/assets/img/cccc.png"/>
+</div>
 
 </body>
 </html>
