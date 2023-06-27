@@ -1,0 +1,256 @@
+1. VM 로그인 및 관리자 계정 전환
+
+bigdata
+$ sudo su
+
+2. 호스트 정보 수정 
+# vi /etc/hosts 
+
+i - 코드 입력
+esc - 입력 취소
+:wq	- 저장후 종료 
+
+
+3. 오라클 설치를 위한 필수 패키지 설치 
+# yum install -y bc flex libaio wget unzip
+
+4. 오라클 설치를 위한 계정 생성 
+# groupadd oinstall :그룹생성
+# groupadd dba :그룹생성
+# useradd -g oinstall -G dba oracle :계정생성 
+# passwd oracle
+
+암호는 oracle로 설정
+
+5. 오라클 설치파일 압축해제하기 
+# cd /home/bigdata/
+# ls
+# unzip oracle-xe-11.2.0-1.0.x86_64.rpm.zip
+
+6. 오라클 데이터베이스 설치하기 
+# cd Disk1
+# rpm -ivh oracle-xe-11.2.0-1.0.x86_64.rpm
+
+7. 오라클 데이터베이스 기본설정하기 
+# /etc/init.d/oracle-xe configure
+
+9999
+그냥엔터
+암호입력 (Bigdata_2023)
+암호입력 (Bigdata_2023)
+그냥엔터
+
+8. 방화벽 해체
+systemctl stop firewalld
+systemctl disable firewalld
+
+9. oracle 환경 설정
+
+# vi /etc/profile
+
+페이지 맨 밑으로 이동
+
+export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
+export ORACLE_SID=XE
+export PATH=$ORACLE_HOME/bin:$PATH
+
+# source /etc/profile
+
+
+10. sqlplus 접속후 HR 예제 테이블 생성
+
+# su oracle
+
+$ source /etc/profile
+
+$ sqlplus /nolog
+
+
+ conn sys as sysdba
+ 암호입력
+
+@?/rdbms/admin/utlsampl.sql
+
+[bigdata@centos79 ~]$ sudo su
+[sudo] bigdata의 암호: 
+[root@centos79 bigdata]# 
+[root@centos79 bigdata]# vi /etc/hosts 
+[root@centos79 bigdata]# # yum install -y bc flex libaio wget unzip
+[root@centos79 bigdata]# # yum install -y bc flex libaio wget unzip
+[root@centos79 bigdata]# # yum install -y bc flex libaio wget unzip
+[root@centos79 bigdata]#  yum install -y bc flex libaio wget unzip
+Loaded plugins: fastestmirror
+Determining fastest mirrors
+ * base: mirror.navercorp.com
+ * extras: mirror.navercorp.com
+ * updates: ftp.kaist.ac.kr
+base                                                                                 | 3.6 kB  00:00:00     
+extras                                                                               | 2.9 kB  00:00:00     
+updates                                                                              | 2.9 kB  00:00:00     
+(1/4): base/7/x86_64/group_gz                                                        | 153 kB  00:00:00     
+(2/4): extras/7/x86_64/primary_db                                                    | 249 kB  00:00:00     
+(3/4): updates/7/x86_64/primary_db                                                   |  22 MB  00:00:00     
+(4/4): base/7/x86_64/primary_db                                                      | 6.1 MB  00:00:01     
+Package bc-1.06.95-13.el7.x86_64 already installed and latest version
+Package libaio-0.3.109-13.el7.x86_64 already installed and latest version
+Resolving Dependencies
+--> Running transaction check
+---> Package flex.x86_64 0:2.5.37-6.el7 will be installed
+--> Processing Dependency: m4 for package: flex-2.5.37-6.el7.x86_64
+---> Package unzip.x86_64 0:6.0-24.el7_9 will be installed
+---> Package wget.x86_64 0:1.14-18.el7_6.1 will be installed
+--> Running transaction check
+---> Package m4.x86_64 0:1.4.16-10.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+============================================================================================================ Package               Arch                   Version                         Repository               Size
+============================================================================================================Installing:
+ flex                  x86_64                 2.5.37-6.el7                    base                    293 k
+ unzip                 x86_64                 6.0-24.el7_9                    updates                 172 k
+ wget                  x86_64                 1.14-18.el7_6.1                 base                    547 k
+Installing for dependencies:
+ m4                    x86_64                 1.4.16-10.el7                   base                    256 k
+
+Transaction Summary
+============================================================================================================Install  3 Packages (+1 Dependent package)
+
+Total download size: 1.2 M
+Installed size: 3.5 M
+Downloading packages:
+경고: /var/cache/yum/x86_64/7/base/packages/m4-1.4.16-10.el7.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY
+Public key for m4-1.4.16-10.el7.x86_64.rpm is not installed
+(1/4): m4-1.4.16-10.el7.x86_64.rpm                                                   | 256 kB  00:00:00     
+Public key for unzip-6.0-24.el7_9.x86_64.rpm is not installed
+(2/4): unzip-6.0-24.el7_9.x86_64.rpm                                                 | 172 kB  00:00:00     
+(3/4): flex-2.5.37-6.el7.x86_64.rpm                                                  | 293 kB  00:00:00     
+(4/4): wget-1.14-18.el7_6.1.x86_64.rpm                                               | 547 kB  00:00:00     
+------------------------------------------------------------------------------------------------------------Total                                                                       4.6 MB/s | 1.2 MB  00:00:00     
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Importing GPG key 0xF4A80EB5:
+ Userid     : "CentOS-7 Key (CentOS 7 Official Signing Key) <security@centos.org>"
+ Fingerprint: 6341 ab27 53d7 8a78 a7c2 7bb1 24c6 a8a7 f4a8 0eb5
+ Package    : centos-release-7-9.2009.0.el7.centos.x86_64 (@anaconda)
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : m4-1.4.16-10.el7.x86_64                                                                  1/4 
+  Installing : flex-2.5.37-6.el7.x86_64                                                                 2/4 
+  Installing : wget-1.14-18.el7_6.1.x86_64                                                              3/4 
+  Installing : unzip-6.0-24.el7_9.x86_64                                                                4/4 
+  Verifying  : m4-1.4.16-10.el7.x86_64                                                                  1/4 
+  Verifying  : flex-2.5.37-6.el7.x86_64                                                                 2/4 
+  Verifying  : unzip-6.0-24.el7_9.x86_64                                                                3/4 
+  Verifying  : wget-1.14-18.el7_6.1.x86_64                                                              4/4 
+
+Installed:
+  flex.x86_64 0:2.5.37-6.el7        unzip.x86_64 0:6.0-24.el7_9        wget.x86_64 0:1.14-18.el7_6.1       
+
+Dependency Installed:
+  m4.x86_64 0:1.4.16-10.el7                                                                                 
+
+Complete!
+[root@centos79 bigdata]# groupadd oinstall
+[root@centos79 bigdata]# groupadd dba
+[root@centos79 bigdata]# useradd -g oinstall -G dba oracle
+[root@centos79 bigdata]# passwd oracle
+oracle 사용자의 비밀 번호 변경 중
+새  암호:
+잘못된 암호: 암호는 8 개의 문자 보다 짧습니다
+새  암호 재입력:
+passwd: 모든 인증 토큰이 성공적으로 업데이트 되었습니다.
+[root@centos79 bigdata]# cd /home/bigdata/
+[root@centos79 bigdata]# cd/home/bigdata/
+bash: cd/home/bigdata/: 그런 파일이나 디렉터리가 없습니다
+[root@centos79 bigdata]# cd /home/bigdata/
+[root@centos79 bigdata]# ls
+oracle-xe-11.2.0-1.0.x86_64.rpm.zip
+[root@centos79 bigdata]# unzip oracle-xe-11.2.0-1.0.x86_64.rpm.zip
+Archive:  oracle-xe-11.2.0-1.0.x86_64.rpm.zip
+   creating: Disk1/
+   creating: Disk1/upgrade/
+  inflating: Disk1/upgrade/gen_inst.sql  
+   creating: Disk1/response/
+  inflating: Disk1/response/xe.rsp   
+  inflating: Disk1/oracle-xe-11.2.0-1.0.x86_64.rpm  
+[root@centos79 bigdata]# free -m
+              total        used        free      shared  buff/cache   available
+Mem:           1980         228         764           9         987        1592
+Swap:          2047           0        2047
+[root@centos79 bigdata]# free -h
+              total        used        free      shared  buff/cache   available
+Mem:           1.9G        227M        764M        9.5M        987M        1.6G
+Swap:          2.0G          0B        2.0G
+[root@centos79 bigdata]# cd Disk1
+[root@centos79 Disk1]# rpm -ivh oracle-xe-11.2.0-1.0.x86_64.rpm
+준비 중...                         ################################# [100%]
+/var/tmp/rpm-tmp.i236IL: line 257: [: 18446744073692774399: integer expression expected
+/var/tmp/rpm-tmp.i236IL: line 271: [: 18446744073692774399: integer expression expected
+Updating / installing...
+   1:oracle-xe-11.2.0-1.0             ################################# [100%]
+Executing post-install steps...
+
+You must run '/etc/init.d/oracle-xe configure' as the root user to configure the database.
+
+[root@centos79 Disk1]# /etc/init.d/oracle-xe configure
+
+Oracle Database 11g Express Edition Configuration
+-------------------------------------------------
+This will configure on-boot properties of Oracle Database 11g Express 
+Edition.  The following questions will determine whether the database should 
+be starting upon system boot, the ports it will use, and the passwords that 
+will be used for database accounts.  Press <Enter> to accept the defaults. 
+Ctrl-C will abort.
+
+Specify the HTTP port that will be used for Oracle Application Express [8080]:9999
+
+/etc/init.d/oracle-xe: line 362: netstat: command not found
+Specify a port that will be used for the database listener [1521]:
+
+/etc/init.d/oracle-xe: line 405: netstat: command not found
+Specify a password to be used for database accounts.  Note that the same
+password will be used for SYS and SYSTEM.  Oracle recommends the use of 
+different passwords for each database account.  This can be done after 
+initial configuration:
+Confirm the password:
+
+Do you want Oracle Database 11g Express Edition to be started on boot (y/n) [y]:
+
+Starting Oracle Net Listener...Done
+Configuring database...Done
+Starting Oracle Database 11g Express Edition instance...Done
+Installation completed successfully.
+[root@centos79 Disk1]# systemctl stop firewalld
+[root@centos79 Disk1]# systemctl disable firewalld
+Removed symlink /etc/systemd/system/multi-user.target.wants/firewalld.service.
+Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.
+[root@centos79 Disk1]# vi /etc/profile
+[root@centos79 Disk1]# source /etc/profile
+bash: rt: command not found
+bash: rt: command not found
+[root@centos79 Disk1]# vi /etc/profile
+[root@centos79 Disk1]# 
+[root@centos79 Disk1]# 
+[root@centos79 Disk1]# source /etc/profile
+[root@centos79 Disk1]# su oracle
+[oracle@centos79 Disk1]$ source /etc/profile
+[oracle@centos79 Disk1]$ sqlplus /nolog
+
+SQL*Plus: Release 11.2.0.2.0 Production on Tue Jun 27 15:42:12 2023
+
+Copyright (c) 1982, 2011, Oracle.  All rights reserved.
+
+SQL> conn sys as sysdba
+Enter password: 
+Connected.
+SQL> @?/rdbms/admin/utlsampl.sql
+Disconnected from Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+[oracle@centos79 Disk1]$ 
+[oracle@centos79 Disk1]$ 
+[oracle@centos79 Disk1]$ exit
+[root@centos79 Disk1]# poweroff
+
+Session was closed
