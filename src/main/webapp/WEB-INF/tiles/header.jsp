@@ -10,10 +10,11 @@
 </head>
 <body>
 
-<div id="container">
-    <header><h1>SemiProject</h1></header>
+
+    <h1>SemiProject</h1>
     <nav>
         <ul>
+
             <li><a href="/">Home</a></li>
             <li><a href="/member/join">회원가입</a></li>
             <li><a href="/member/login">로그인</a></li>
@@ -26,6 +27,6 @@
 
 
 
-</div>
+
 </body>
 </html>
