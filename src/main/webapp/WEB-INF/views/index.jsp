@@ -3,6 +3,8 @@
 
 
 <main>
-    <img src="/assets/img/cccc.png">
+<%--    <img src="/assets/img/cccc.png">--%>
+    <img src="/assets/img/3.png">
+<%--    <img src="/assets/img/www.webp">--%>
 </main>
 

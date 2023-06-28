@@ -10,7 +10,6 @@
 </head>
 <body>
 
-
     <h1>SemiProject</h1>
     <nav>
         <ul>
@@ -23,10 +22,6 @@
         </ul>
         <hr class="hr">
     </nav>
-
-
-
-
 
 </body>
 </html>
