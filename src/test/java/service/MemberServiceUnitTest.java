@@ -12,6 +12,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -31,12 +32,18 @@ public class MemberServiceUnitTest {
         assertEquals(msrv.saveMember(m),true);
     }
     @Test
-
     public void loginMember() throws Exception{
         Member m = new Member();
         m.setUserid("abc123");
         m.setPassword("987xyz");
         assertEquals(msrv.loginMember(m) ,true);
     }
+    @Test
+    public void readOneMember() throws Exception{
+        String userid = "abc123";
+
+        assertNotNull(msrv.readOneMember(userid));
+    }
+
 
 }
