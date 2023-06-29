@@ -24,8 +24,8 @@ public class MemberServiceImpl implements MemberService{
         boolean isLogin = false;
 
         if (mdao.loginMember(m) != null)
-            isLogin = false;
+            isLogin = true;
 
-        return false;
+        return isLogin;
     }
 }
