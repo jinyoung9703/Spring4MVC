@@ -11,6 +11,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNotNull;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,5 +28,17 @@ public class MemberDAOUnitTest {
         Member m = new Member(null, "abc123a","987xyz","abc123","abc123@987xyz.co.kr","null");
         // assertEquals(테스트메서드, 검증값)
         assertEquals(mdao.insertMember(m),1);
+    }
+    @Test
+
+    public void loginMember() throws Exception{
+        Member m = new Member();
+        m.setUserid("abc123");
+        m.setPassword("987xyz");
+
+//        System.out.println(mdao.loginMember(m)); 넘어오고 싶은걸 보고싶을때
+
+        assertNotNull(mdao.loginMember(m));// 표준을로 있다 없다로 간단하게 봄
+
     }
 }
