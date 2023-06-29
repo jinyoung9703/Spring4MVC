@@ -8,7 +8,7 @@
         <div><label for="userid">아이디</label>
             <input type="text" name="userid" id="userid"></div>
         <div><label for="passwd">비밀번호</label>
-            <input type="password" name="passwd" id="passwd"></div>
+            <input type="password" name="password" id="passwd"></div>
         <div><label></label>
             <button type="button" class="btn btn-primary" id="loginbtn">로그인</button>
         </div>
