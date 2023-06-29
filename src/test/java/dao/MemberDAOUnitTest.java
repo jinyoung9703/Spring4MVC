@@ -41,4 +41,11 @@ public class MemberDAOUnitTest {
         assertNotNull(mdao.loginMember(m));// 표준을로 있다 없다로 간단하게 봄
 
     }
+    @Test
+    public void selectOneMember() throws Exception {
+        String userid = "abc123";
+
+        System.out.println(mdao.selectOneMember(userid));
+        assertNotNull(mdao.selectOneMember(userid));
+    }
 }
