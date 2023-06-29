@@ -30,4 +30,13 @@ public class MemberServiceUnitTest {
         // assertEquals(테스트메서드, 검증값)
         assertEquals(msrv.saveMember(m),true);
     }
+    @Test
+
+    public void loginMember() throws Exception{
+        Member m = new Member();
+        m.setUserid("abc123");
+        m.setPassword("987xyz");
+        assertEquals(msrv.loginMember(m) ,true);
+    }
+
 }
