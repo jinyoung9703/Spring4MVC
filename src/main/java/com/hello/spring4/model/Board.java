@@ -10,7 +10,7 @@ import lombok.ToString;
 @Getter
 @AllArgsConstructor
 @ToString
-public class Borad {
+public class Board {
 
     private String bno;
     private String title;
