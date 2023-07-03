@@ -29,4 +29,13 @@ public class BoardServiceImpl implements BoardService{
 
         return bdao.selectOneBoard(bno);
     }
+
+    @Override
+    public boolean saveBoard(Board bd) {
+        boolean isSaved = false;
+
+        if(bdao.insertBoard(bd) > 0) isSaved = true;
+
+        return isSaved; // 두개중에 하나를 선택할때 isSaved변수를 사용한다
+    }
 }
