@@ -23,7 +23,7 @@ public class MemberController {
     private MemberService msrv;
 
     @RequestMapping(value = "/member/join", method = RequestMethod.GET)
-    public String join(Model m){
+    public String join(Model m, HttpSession sess){
 
         // 로거 출력
         logger.info("member/join 호출!");
