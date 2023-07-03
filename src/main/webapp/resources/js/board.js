@@ -8,8 +8,14 @@ newbtn?.addEventListener('click',()=>{
 let newbdbtn = document.querySelector("#newbdbtn");
 newbdbtn?.addEventListener('click',()=>{
    let frm = document.forms.writefrm;
-    if (grecaptcha.getResponse() === ''){ alert('자동쓰기방지를 체크하세요!!') }
+   if(frm.title.value === ''){
+       alert('제목을 작성하세요!!');
+   } else if(frm.constructor.value === ''){
+       alert('본문을 작성하세요!!');
+   } else if (grecaptcha.getResponse() === ''){
+        alert('자동쓰기방지를 체크하세요!!') }
     else{
-        alert('쓰기 완료');
+        frm.method = 'post';
+        frm.submit();
     }
 });
