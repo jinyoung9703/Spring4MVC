@@ -36,6 +36,15 @@ public class BoardServiceUnitTest {
         System.out.println(results);
 
     }
+    @Test
+    public void readOneBoard() throws Exception{
+        String bno = "450";
+        Board results = bsrv.readOneBoard(bno);
+
+        assertNotNull(results);
+        System.out.println(results);
+
+    }
 
 
 }
