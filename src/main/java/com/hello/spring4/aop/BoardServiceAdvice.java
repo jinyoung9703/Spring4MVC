@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @Component
 public class BoardServiceAdvice {
 
-    private Logger logger = LogManager.getLogger(MemberServiceAdvice.class);
+    private Logger logger = LogManager.getLogger(BoardServiceAdvice.class);
     @Pointcut("execution(* com.hello.spring4.controller.BoardController.write(..))")
     public void writePoint(){}
 
@@ -29,7 +29,7 @@ public class BoardServiceAdvice {
         }
 
         if(sess.getAttribute("member") == null)
-            return "redirect:/memeber/login";
+            return "redirect:/member/login";
 
         Object obj = pjp.proceed();
         return obj;
